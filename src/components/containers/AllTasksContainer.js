@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { 
   fetchAllTasksThunk,
+  deleteTaskThunk
 } from '../../store/thunks';
 
 import AllTasksView from '../views/AllTasksView';
@@ -15,8 +16,11 @@ class AllTasksContainer extends Component {
     render(){
         return(
             <div>
+                {console.log("all tasks: " + this.props.allTasks)}
+
                 <AllTasksView 
                   tasks={this.props.allTasks}
+                  deleteTask={this.props.deleteTask}
                 />
             </div>
         )
@@ -33,7 +37,8 @@ const mapState = (state) => {
 // Map dispatch to props;
 const mapDispatch = (dispatch) => {
   return {
-    fetchAllTasks: () => dispatch(fetchAllTasksThunk())
+    fetchAllTasks: () => dispatch(fetchAllTasksThunk()),
+    deleteTask: (taskId) => dispatch(deleteTaskThunk(taskId)),
   };
 };
 
